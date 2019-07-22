@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="usermotto">
+    <input placeholder='修改昵称' value="{{userInfo.nickName}}" bindinput='onInput'></input>
+    <button bindtap='changeNick' class="btn">修改昵称</button>
+  </view>
+  <view class="tip">修改昵称后返回上一页查看变化</view>
+</view>

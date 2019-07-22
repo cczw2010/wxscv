@@ -1,0 +1,33 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+.usermotto {
+  margin-top: 50rpx;
+}
+input{
+  margin:10rpx auto;
+  padding:10rpx;
+  width: 200rpx;
+  border:1px solid #ccc;
+}
+.btn{
+  padding:auto 10rpx;
+}
+navigator{
+  padding:20rpx;
+  border:1px solid #ccc;
+  text-align: center;
+  background: #eee;
+}
+.tip{
+  margin: 50rpx auto;
+  font-size: 0.8em;
+  color: #666;
+}

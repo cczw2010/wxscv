@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view wx:if="{{hasUserInfo}}" class="usermotto">
+    <input placeholder='修改昵称' value="{{userInfo.nickName}}" bindinput='onInput'></input>
+    <button bindtap='changeNick' class="btn">修改昵称</button>
+    <navigator url="/pages/second/index">下一页</navigator>
+  </view>
+  <view wx:if="{{hasUserInfo}}" class="tip">修改昵称后进入下一页查看</view>
+</view>
