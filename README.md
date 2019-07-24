@@ -2,11 +2,15 @@
 
 微信小程序中，数据状态不同页面中不能跨页面同步更新，也就是缺失类似vuex,mobx,redux全局的数据状态管理功能。 有些人移植了这些库，但是毕竟不是微信小程序生态的东西。
 
-tencent也发布了类似的库，叫做 [westore](https://github.com/Tencent/westore)，基于小程序开发，非常小巧好用。 但是由于重写了Page方法，而现在很多项目都有自己的框架（已经重写了Page方法等），重构代价较大， 所以参考实现了 **wxscv**。
+Tencent也发布了类似的库，叫做 [westore](https://github.com/Tencent/westore)，基于小程序开发，非常小巧好用。 但是由于重写了Page方法，而现在很多项目都有自己的框架（已经重写了Page方法等），重构代价较大， 所以参考实现了 **wxscv**。
 
 ###设计思路
 
-想像model一样引入单独的数据模块，引入相同model的页面数据更新是同步的。 页面中的方法不重写Page,而是改为处理一下Page的option。
+* 代码入侵最小化，千万不要把一个简单功能的库捯饬成框架那样复杂
+* 像model一样引入单独的数据模块，引入相同model的页面数据更新是同步的。 页面中的方法不重写Page,而是改为处理一下Page的option。
+* 避开this.setData方式，直接操作this.data, 也是因为this.setData性能问题（参考westore的diff库）
+* page内引用的model数据更新的时候，所有的引入该model的页面数据同步更新，通时给model个通知回调，方便处理业务逻辑
+
 
 ### 使用示例
 	
@@ -57,4 +61,4 @@ tencent也发布了类似的库，叫做 [westore](https://github.com/Tencent/we
 * onUpdate model的数据修改后会调用该方法，可以在此处做一些数据或者业务操作
 
 
-全部就这些了。
+全部就这些了。简单就好。
